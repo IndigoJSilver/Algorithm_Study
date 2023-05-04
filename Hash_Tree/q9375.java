@@ -15,7 +15,6 @@ public class q9375 {
         StringBuilder sb = new StringBuilder();
 
         int T = Integer.parseInt(br.readLine());
-        int result = 1; 
         for(int i=0; i<T; i++){
             HashMap<String, Integer> hm = new HashMap<>();
             int N = Integer.parseInt(br.readLine());
@@ -32,10 +31,16 @@ public class q9375 {
                     hm.put(kind, 1); // 그냥 hm에 한개 넣어주기
                 }
             }
-            result = 1;
+            int result = 1;
             for(Map.Entry<String, Integer> entry : hm.entrySet()) { // (key, value) pair를 entry라고 함
                 result *= (entry.getValue()+1);
             }
+            /*
+             * case2 - keySet()으로 출력
+             * for(String key : hm.keySet()) {
+                result *= hm.get(key)+1;
+                }
+             */
             
             sb.append(result - 1).append('\n'); // 알몸 하나 빼야함
         }
