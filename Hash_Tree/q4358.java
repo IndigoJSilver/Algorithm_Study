@@ -3,20 +3,19 @@
  * hashmap보단 treemap을 사용하는 것이 낫다.
  * treemap은 입력과 동시에 오름차순으로 정렬해주기 때문.
  */
-
 import java.util.*;
 import java.io.*;
 
 public class q4358 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        //StringTokenizer st;
 
         TreeMap<String, Integer> tm = new TreeMap<>();
         String tree; // EOF 방지 위해 String 생성
         int count = 0; // 종이 차지하는 비율을 구해야 하니 종 개수를 센다
         /*
          * EOF 방지하는 다른 방식
+         * StringTokenizer st;
          * while(true) {
             if(br.readLine() != null) { // EOF 방지. 마지막 문자 뒤에 EOF가 오는데, br.readLine()은 EOF를 null로 인지한다.
                 // 그래서 null이 아닐 때, 값을 받아올 수 있도록 만든다.
@@ -29,10 +28,13 @@ public class q4358 {
          */
         
         while((tree = br.readLine()) != null) { // EOF 방지
-            tm.put(tree, tm.getOrDefault(tree, 0) + 1); // 굳이 st 안써도 됨.
-            // 왜냐면 한 문장에 하나의 값만 들어옴. -> map으로 처리 가능
+            tm.put(tree, tm.getOrDefault(tree, 0) + 1); // 굳이 st 안써도 됨. 왜냐면 한 문장에 하나의 값만 들어옴. -> map으로 처리 가능
             /*
+             * default V getOrDefault(Object key, V defaultValue)
              * getOrDefault() 함수는 찾는 키가 존재한다면 찾는 키의 값을 반환하고 없다면 기본 값을 반환
+             * tm.getOrDefault(tree, 0) + 1
+             * tree(key)에 해당하는 키가 있으면, 찾는 키 값 반환하고 없으면 0을 반환.
+             * 그리고 +1을 해준다. 왜냐면 키 값을 넣어주면서 중복키는 값을 1씩 증가시켜줘야 함.
              */
             count++;
         }
