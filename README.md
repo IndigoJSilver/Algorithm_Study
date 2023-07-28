@@ -44,14 +44,15 @@ ArrayList <Object> list = new ArrayList <>();
    
    <br>
 
-* **시간복잡도**   
-|*|ArrayList|LinkedList|reference|
+* **시간복잡도**
+
+||ArrayList|LinkedList|reference|
 |---|---|---|---|
 |add()|O(1)|O(1)|LinkedList|
 |add(index, value)|O(N)|O(1) + search time / O(N)|LinkedList|
-|remove(index)|O(N)|O(1)|LinkedList| 
-|remove(value)|O(N)|O(1)|LinkedList|   
-|get(index)|O(1)|O(N)|ArrayList|   
+|remove(index)|O(N)|O(1)|LinkedList|
+|remove(value)|O(N)|O(1)|LinkedList|
+|get(index)|O(1)|O(N)|ArrayList|
 |indexOf(value)|O(N)|O(N)|ArrayList|
 
 
