@@ -45,7 +45,7 @@ ArrayList <Object> list = new ArrayList <>();
    <br>
 
 * **시간복잡도**   
-| |ArrayList|LinkedList|reference|
+|*|ArrayList|LinkedList|reference|
 |---|---|---|---|
 |add()|O(1)|O(1)|LinkedList|
 |add(index, value)|O(N)|O(1) + search time / O(N)|LinkedList|
