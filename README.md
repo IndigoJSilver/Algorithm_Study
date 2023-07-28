@@ -16,38 +16,43 @@ ArrayList <Object> list = new ArrayList <>();
 
 
 # ArrayList vs LinkedList
-1. ArrayList(배열과 유사)   
+1. **ArrayList(배열과 유사)**   
     * 중복 허용, 순서 유지하며 인덱스로 데이터 관리.   
     * 클래스이므로 배열 추가, 삭제 하는 메소드 존재.   
     * 추가했을 때, 배열 크기가 동적으로 커지지 않아, 꽉 차면 더 큰 용량의 배열을 만들어 옮겨야 함.   
    
-* API 종류   
+* **API 종류**   
     - add(E element) -> 원소 마지막에 추가   
     - add(int index, E element) -> 원소를 지정된 위치에 추가   
     - remove(int index) -> 원소의 인덱스로 삭제   
     - get(int index) -> 인덱스에 해당하는 원소 찾기   
    
-2. LinkedList(배열 단점 보안 위해)   
+2. **LinkedList(배열 단점 보안 위해)**   
     * 크기 변경 불가 -> 새 배열 생성하여 복사해야함.   
     * 비순차적인 데이터 추가, 삭제 시간 오래 걸림   
    
-* API 종류   
+* **API 종류**   
     - 상동   
    
+   <br>
+
 * 순차 추가 -> LinkedList가 우위. ArrayList는 공간 부족으로 인한 배열 복사가 일어나기 때문.   
 * 순차 삭제 -> ArrayList가 우위. 노드 링크 끊고 하는 작업보다 배열에서 요소 삭제하는 것이 더 빠름.   
 * 중간 데이터 추가 -> LinkedList가 우위. ArrayList는 배열 복사 및 데이터 이동이 발생하기 때문.   
 * 중간 삭제 -> LinkedList가 우위. 요소 이동 없이 노드 포인팅만 교체하면 됨.   
 * 접근 시간 -> ArrayList가 우위. 메모리 저장 구조상 배열은 연속된 공간에 저장되고 인덱스로 단번에 접근하기 때문.   
    
-* 시간복잡도   
-                  ArrayList   LinkedList                        reference   
-add()                O(1)        O(1)                           LinkedList   
-add(index, value)    O(N)        O(1) + search time / O(N)      LinkedList   
-remove(index)        O(N)        O(1)                           LinkedList   
-remove(value)        O(N)        O(1)                           LinkedList   
-get(index)           O(1)        O(N)                           ArrayList   
-indexOf(value)       O(N)        O(N)                           ArrayList   
+   <br>
+
+* **시간복잡도**   
+| |ArrayList|LinkedList|reference|
+|---|---|---|---|
+|add()|O(1)|O(1)|LinkedList|
+|add(index, value)|O(N)|O(1) + search time / O(N)|LinkedList|
+|remove(index)|O(N)|O(1)|LinkedList| 
+|remove(value)|O(N)|O(1)|LinkedList|   
+|get(index)|O(1)|O(N)|ArrayList|   
+|indexOf(value)|O(N)|O(N)|ArrayList|
 
 
 # LinkedList는 의외로 잘 사용되지 않음
@@ -57,7 +62,7 @@ indexOf(value)       O(N)        O(N)                           ArrayList
 
 
 # Queue
-* Queue의 구현체는 LinkedList.   
+* **Queue의 구현체는 LinkedList.**   
     - 큐는 항상 첫 번째 데이터를 삭제하므로 ArrayList를 사용하게 되면 빈공간을 채우기 위해 데이터의 복사가 발생 -> 비효율적   
     - 그래서 중간 데이터 추가/삭제 쉬운 LinkedList 사용.   
    
@@ -74,7 +79,7 @@ indexOf(value)       O(N)        O(N)                           ArrayList
 
 
 # PriorityQueue
-* PriorityQueue 이용하는 문제   
+* **PriorityQueue 이용하는 문제**   
     - 힙은 최솟값 또는 최댓값을 빠르게 찾아내기 위해 완전이진트리 형태로 만들어진 자료구조   
     - 우선순위 큐는 각 요소들이 각각의 우선 순위를 갖고 있고, 요소들의 대기열에서   
     - 우선 순위가 높은 요소가 우선 순위가 낮은 요소보다 먼저 제공되는 자료구조   
