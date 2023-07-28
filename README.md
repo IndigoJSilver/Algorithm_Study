@@ -11,6 +11,7 @@
     -> 정사각형 list = new 정사각형();   
 ***
 
+
 # ArrayList vs LinkedList
 1. ArrayList(배열과 유사)   
     * 중복 허용, 순서 유지하며 인덱스로 데이터 관리.   
