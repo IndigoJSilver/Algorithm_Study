@@ -61,7 +61,7 @@ indexOf(value)       O(N)        O(N)                           ArrayList
     - 큐는 항상 첫 번째 데이터를 삭제하므로 ArrayList를 사용하게 되면 빈공간을 채우기 위해 데이터의 복사가 발생 -> 비효율적   
     - 그래서 중간 데이터 추가/삭제 쉬운 LinkedList 사용.   
    
-* Queue API   
+**Queue API**   
     - add() -> 맨 뒤에 삽입. 추가 성공 true, 꽉 차면 에러   
     - offer() -> 맨 뒤에 삽입. 추가 성공 true, 실패 false 반환   
     - remove() -> 맨 앞에 있는 값 반환 후 삭제. 비어있으면 에러   
