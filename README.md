@@ -5,12 +5,11 @@
 * 인터페이스와 클래스. 아래의 결과는 같음. 다만 list가 더 유연하다. 즉 generic하게 쓸 수 있음.   
    
 * List <Object> list = new ArrayList <>();   
-    -> 도형 list = new 정사각형();   
+-> 도형 list = new 정사각형();   
    
 * ArrayList <Object> list = new ArrayList <>();   
-    -> 정사각형 list = new 정사각형();   
+-> 정사각형 list = new 정사각형();   
 
-<hr>
 
 # ArrayList vs LinkedList
 1. ArrayList(배열과 유사)   
