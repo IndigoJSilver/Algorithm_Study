@@ -9,7 +9,7 @@
    
 * ArrayList <Object> list = new ArrayList <>();   
     -> 정사각형 list = new 정사각형();   
-
+***
 
 # ArrayList vs LinkedList
 1. ArrayList(배열과 유사)   
