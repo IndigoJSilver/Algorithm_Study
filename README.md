@@ -106,3 +106,9 @@ ArrayList <Object> list = new ArrayList <>();
     PriorityQueue<Integer> pq = new PriorityQueue<>();
     ``` 
        
+# HashSet
+* 자바 Collection 중 Set의 파생클래스
+
+    - 중복 원소 허용 x
+    - 순서 개념 없음. 즉 Collections.sort() 메소드 사용 불가.
+    - 정렬 하고 싶다면, 리스트로 변환 후 정렬.
