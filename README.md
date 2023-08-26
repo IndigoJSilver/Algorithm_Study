@@ -238,9 +238,8 @@ class Student {
 
 ```java
 public class Main {
-	public static void main(String[] args)  {
- 
-		Student a = new Student(17, 2);	// 17살 2반
+    public static void main(String[] args) {
+        Student a = new Student(17, 2);	// 17살 2반
 		Student b = new Student(18, 1);	// 18살 1반
 		Student c = new Student(15, 3);	// 15살 3반
 			
@@ -269,35 +268,33 @@ public class Main {
 		else {
 			System.out.println("b객체가 c객체보다 작습니다.");
 		}
-		
-	}
-	
-	// 학급 대소 비교 익명 객체
-	public static Comparator<Student> comp = new Comparator<Student>() {
-		@Override
-		public int compare(Student o1, Student o2) {
-			return o1.classNumber - o2.classNumber;
-		}
-	};
-	
-	// 나이 대소 비교 익명 객체
-	public static Comparator<Student> comp2 = new Comparator<Student>() {
-		@Override
-		public int compare(Student o1, Student o2) {
-			return o1.age - o2.age;
-		}
-	};
+    }
+
+    // 학급 대소 비교 익명객체
+    public static Comparator<Student> comp = new Comparator<Student>() {
+        @Override
+        public int compare(Student o1, Student o2) {
+            return o1.num - o2.num;
+        }
+    };
+
+    // 나이 대소 비교 익명객체
+    public static Comparator<Student> comp2 = new Comparator<Student>() {
+        @Override
+        public int compare(Student o1, Student o2) {
+            return o1.age - o2.age;
+        }
+    };
 }
- 
+
 class Student {
- 
-	int age;			// 나이
-	int classNumber;	// 학급
-	
-	Student(int age, int classNumber) {
-		this.age = age;
-		this.classNumber = classNumber;
-	}	
+    int age;
+    int num;
+
+    Student(int age, int num) {
+        this.age = age;
+        this.num = num;
+    }
 }
 ```
 
@@ -338,79 +335,78 @@ public int compare(Class o1, Class o2) {
 
 ```java
 public class Main {
-	public static void main(String[] args) {
-		
-		MyInteger[] arr = new MyInteger[10];
-		
-		// 객체 배열 초기화 (랜덤 값으로) 
-		for(int i = 0; i < 10; i++) {
-			arr[i] = new MyInteger((int)(Math.random() * 100));
-		}
- 
-		// 정렬 이전
-		System.out.print("정렬 전 : ");
-		for(int i = 0; i < 10; i++) {
-			System.out.print(arr[i].value + " ");
-		}
-		System.out.println();
-		
-		Arrays.sort(arr, comp);		// MyInteger에 대한 Comparator을 구현한 익명객체를 넘겨줌
-        
-		// 정렬 이후
-		System.out.print("정렬 후 : ");
-		for(int i = 0; i < 10; i++) {
-			System.out.print(arr[i].value + " ");
-		}
-		System.out.println();
-	}
- 
-	static Comparator<MyInteger> comp = new Comparator<MyInteger>() {
-		
-		@Override
-		public int compare(MyInteger o1, MyInteger o2) {
-			return o2.value-  o1.value; // 내림차순
-		}
-	};
+    public static void main(String[] args) {
+        MyInteger[] arr = new MyInteger[10];
+
+        // 객체 배열 초기화 (랜덤 값으로)
+        for(int i=0; i<10; i++) {
+            arr[i] = new MyInteger((int)(Math.random() * 100));
+        }
+
+        // 정렬 이전
+        System.out.print("정렬 전: ");
+        for(int i=0; i<10; i++) {
+            System.out.print(arr[i].value + " ");
+        }
+        System.out.println();
+
+        Arrays.sort(arr, comp); // MyInteger에 대한 Comparator을 구현한 익명객체를 넘겨줌
+
+        // 정렬 이후
+        System.out.print("정렬 후: ");
+        for(int i=0; i<10; i++) {
+            System.out.print(arr[i].value + " ");
+        }
+        System.out.println();
+    }
+
+    static Comparator<MyInteger> comp = new Comparator<MyInteger>() {
+
+        @Override
+        public int compare(MyInteger o1, MyInteger o2) {
+            return o2.value - o1.value;
+        }
+    }
 }
- 
+
 class MyInteger {
-	int value;
-	
-	public MyInteger(int value) {
-		this.value = value;
-	}
+    int value;
+
+    public MyInteger(int value) {
+        this.value = value;
+    }
 }
 ```
 
 <br>
 
 **<참고>**<br>
-인터페이스는 함수의 껍데기만 있는 클래스
-자동차를 설계한다고 가정. 이때, '자동차' 자체는 추상적인 개념.
-대개 자동차는 바퀴가 4개 있고, 핸들과 기어가 있는 동력 물체라는 개념이 존재.
+인터페이스는 함수의 껍데기만 있는 클래스<br>
+자동차를 설계한다고 가정. 이때, '자동차' 자체는 추상적인 개념.<br>
+대개 자동차는 바퀴가 4개 있고, 핸들과 기어가 있는 동력 물체라는 개념이 존재.<br>
 이러한 추상적 개념을 '인터페이스' 라고 보면 된다.
 
 <br>
 
-이러한 개념을 구체화, 즉 구현을 하여 핸들은 어떤 모양으로 할 지.
-바퀴는 어느 크기, 어느 위치에 둘 것인지 구체적으로 만들어 볼보 XC60 등 하나의 제품이 만들어진다.
+이러한 개념을 구체화, 즉 구현을 하여 핸들은 어떤 모양으로 할 지.<br>
+바퀴는 어느 크기, 어느 위치에 둘 것인지 구체적으로 만들어 볼보 XC60 등 하나의 제품이 만들어진다.<br>
 이를 바로 '클래스' 라고 보면 된다.
 
 <br>
 
-'인터페이스'는 어떤 사물에 대해 기본적인 '필수요소'들을 선언만 해놓은 것.
+'인터페이스'는 어떤 사물에 대해 기본적인 '필수요소'들을 선언만 해놓은 것.<br>
 '클래스'는 이러한 필수요소들을 구체적으로 '구현'하는 것.
 
 <br>
 
-즉, 인터페이스에 선언된 메소드(바퀴, 핸들, 기어, 동력 장치)들이 있고,
-이 인터페이스를 구현하는 클래스는 인터페이스에서 선언된 메소드(바퀴, 핸들, 기어, 동력 장치)를 반드시 구체화 헤야함.
-=> 오버라이드(Override). 즉 재정의
+즉, 인터페이스에 선언된 메소드(바퀴, 핸들, 기어, 동력 장치)들이 있고,<br>
+이 인터페이스를 구현하는 클래스는 인터페이스에서 선언된 메소드(바퀴, 핸들, 기어, 동력 장치)를 반드시 구체화 헤야함.<br>
+**=> 오버라이드(Override). 즉 재정의**
 
 <br>
 
-Java8부터 인터페이스에서도 일반 메소드 구현할 수 있음.
-보통 default나 static으로 선언된 메소드.
+Java8부터 인터페이스에서도 일반 메소드 구현할 수 있음.<br>
+보통 default나 static으로 선언된 메소드.<br>
 참고로 default로 선언된 메소드는 재정의를 할 수 있고, static은 재정의 불가.
 
 <br>
