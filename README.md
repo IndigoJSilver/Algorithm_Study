@@ -112,3 +112,306 @@ ArrayList <Object> list = new ArrayList <>();
     - 중복 원소 허용 x
     - 순서 개념 없음. 즉 Collections.sort() 메소드 사용 불가.
     - 정렬 하고 싶다면, 리스트로 변환 후 정렬.
+
+# Comparable vs Comparator
+* 둘 다 인터페이스
+* comparable과 comparator를 사용하려면 인터페이스 내 선언된 메소드를 반드시 '구현' 해야함.
+* 객체를 비교할 수 있도록 만든다
+
+<br>
+
+* **Comparable**
+    - compareTo(T o) 메소드를 재정의(Override/구현) 해줘야 함.
+    - 자기 자신과 매개변수 객체(파라미터로 들어오는)를 비교
+    - lang 패키지에 있어서 import 안해도 됨.
+
+<br>
+
+* **Coparator**
+    - compare(T o1, T o2) 메소드를 재정의(Override/구현) 해줘야 함.
+    - 두 매개변수 객체(파라미터로 들어오는)를 비교
+    - util 패키지에 있음. import 필요.
+
+<br>
+
+**Comparator 비교 기능만 따로 두고 싶다면?**<br>
+=> 익명 객체(클래스) 활용
+익명 객체는 특정 구현 부분만 따로 사용하거나, 부분적으로 기능을 일시적으로 바꿔야할 시 사용할 수 있음.
+
+<br>
+
+```java
+public class Anonymous {
+    public static void main(String[] agrs) {
+        
+        Rectangle a = new Rectangle();
+        ChildRectangle child = new ChildRectangle();
+
+        // 익명 객체 1
+        Rectangle anonymous1 = new Rectangle() {
+
+            @Override
+            int get() {
+                return width;
+            }
+        };
+
+        System.out.println(a.get()); // 20
+        System.out.println(anonymous1.get()); // 10
+        System.out.println(anonymous2.get()); // 10 * 20 * 30
+        System.out.println(child.get()); // 10 * 20 * 40
+    }
+
+    // 익명 객체 2
+    static Rectangle anonymous2 = new Rectangle() {
+        
+        int depth = 30;
+
+        @Override
+        int get() {
+            return width * height * depth;
+        }
+    };
+}
+
+class ChildRectangle extends Rectangle {
+
+    int depth = 40;
+
+    @Override
+    int get() {
+        return width * height * depth;
+    }
+}
+
+class Rectangle {
+    
+    int width = 10;
+    int height = 20;
+
+    int get() {
+        return height;
+    }
+}
+
+```
+
+<br>
+
+```java
+public class Main {
+    public static void main(String[] args) {
+
+        // 익명 객체 구현방법 1(main 함수 안에 지역변수 처럼 non-static으로 생성)
+        Comparator<Student> comp1 = new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                return o1.num - o2.num;
+            }
+        };
+
+    }
+
+    // 익명 객체 구현방법 2(main 함수 밖에 정적 타입으로 선언)
+    public static Comparator<Student> comp2 = new Comparator<Student>() {
+        @Override
+        public int compare(Student o1, Student o2) {
+            return o1.num - o2.num;
+        }
+    };
+}
+
+// 외부에서 익명 객체로 Comparator가 생성되기 때문에 클래스에서 Comparator 구현할 필요 없다.
+class Student {
+
+    int age;
+    int num;
+
+    Student(int age, int num) {
+        this.age = age;
+        this.num = num;
+    }
+}
+```
+
+<br>
+
+```java
+public class Main {
+	public static void main(String[] args)  {
+ 
+		Student a = new Student(17, 2);	// 17살 2반
+		Student b = new Student(18, 1);	// 18살 1반
+		Student c = new Student(15, 3);	// 15살 3반
+			
+		// 학급 기준 익명객체를 통해 b와 c객체를 비교한다.
+		int classBig = comp.compare(b, c);
+		
+		if(classBig > 0) {
+			System.out.println("b객체가 c객체보다 큽니다.");
+		}
+		else if(classBig == 0) {
+			System.out.println("두 객체의 크기가 같습니다.");
+		}
+		else {
+			System.out.println("b객체가 c객체보다 작습니다.");
+		}
+		
+		// 나이 기준 익명객체를 통해 b와 c객체를 비교한다.
+		int ageBig = comp2.compare(b, c);
+		
+		if(ageBig > 0) {
+			System.out.println("b객체가 c객체보다 큽니다.");
+		}
+		else if(ageBig == 0) {
+			System.out.println("두 객체의 크기가 같습니다.");
+		}
+		else {
+			System.out.println("b객체가 c객체보다 작습니다.");
+		}
+		
+	}
+	
+	// 학급 대소 비교 익명 객체
+	public static Comparator<Student> comp = new Comparator<Student>() {
+		@Override
+		public int compare(Student o1, Student o2) {
+			return o1.classNumber - o2.classNumber;
+		}
+	};
+	
+	// 나이 대소 비교 익명 객체
+	public static Comparator<Student> comp2 = new Comparator<Student>() {
+		@Override
+		public int compare(Student o1, Student o2) {
+			return o1.age - o2.age;
+		}
+	};
+}
+ 
+class Student {
+ 
+	int age;			// 나이
+	int classNumber;	// 학급
+	
+	Student(int age, int classNumber) {
+		this.age = age;
+		this.classNumber = classNumber;
+	}	
+}
+```
+
+<br>
+
+**<두 수의 비교 결과에 따른 작동 방식> => 오름차순**
+- 음수: 두 원소의 위치 교환 X
+- 양수: 두 원소의 위치 교환 O
+```java
+// Comparable
+public int compareTo(Class o) {
+    return this.value - o.value;
+}
+
+// Comparator
+public int compare(Class o1, Class o2) {
+    return o1.value - o2.value;
+}
+```
+
+<br>
+
+**그럼 내림차순의 경우에는?**
+=> 두 원소 비교한 반환값 반대로 해준다
+```java
+// Comparable
+public int compareTo(Class o) {
+    return -(this.value - o.value); // == o.value - this.value
+}
+
+// Comparator
+public int compare(Class o1, Class o2) {
+    return -(o1.value - o2.value); // o2.value - o1.value
+}
+```
+
+<br>
+
+```java
+public class Main {
+	public static void main(String[] args) {
+		
+		MyInteger[] arr = new MyInteger[10];
+		
+		// 객체 배열 초기화 (랜덤 값으로) 
+		for(int i = 0; i < 10; i++) {
+			arr[i] = new MyInteger((int)(Math.random() * 100));
+		}
+ 
+		// 정렬 이전
+		System.out.print("정렬 전 : ");
+		for(int i = 0; i < 10; i++) {
+			System.out.print(arr[i].value + " ");
+		}
+		System.out.println();
+		
+		Arrays.sort(arr, comp);		// MyInteger에 대한 Comparator을 구현한 익명객체를 넘겨줌
+        
+		// 정렬 이후
+		System.out.print("정렬 후 : ");
+		for(int i = 0; i < 10; i++) {
+			System.out.print(arr[i].value + " ");
+		}
+		System.out.println();
+	}
+ 
+	static Comparator<MyInteger> comp = new Comparator<MyInteger>() {
+		
+		@Override
+		public int compare(MyInteger o1, MyInteger o2) {
+			return o2.value-  o1.value; // 내림차순
+		}
+	};
+}
+ 
+class MyInteger {
+	int value;
+	
+	public MyInteger(int value) {
+		this.value = value;
+	}
+}
+```
+
+<br>
+
+**<참고>**<br>
+인터페이스는 함수의 껍데기만 있는 클래스
+자동차를 설계한다고 가정. 이때, '자동차' 자체는 추상적인 개념.
+대개 자동차는 바퀴가 4개 있고, 핸들과 기어가 있는 동력 물체라는 개념이 존재.
+이러한 추상적 개념을 '인터페이스' 라고 보면 된다.
+
+<br>
+
+이러한 개념을 구체화, 즉 구현을 하여 핸들은 어떤 모양으로 할 지.
+바퀴는 어느 크기, 어느 위치에 둘 것인지 구체적으로 만들어 볼보 XC60 등 하나의 제품이 만들어진다.
+이를 바로 '클래스' 라고 보면 된다.
+
+<br>
+
+'인터페이스'는 어떤 사물에 대해 기본적인 '필수요소'들을 선언만 해놓은 것.
+'클래스'는 이러한 필수요소들을 구체적으로 '구현'하는 것.
+
+<br>
+
+즉, 인터페이스에 선언된 메소드(바퀴, 핸들, 기어, 동력 장치)들이 있고,
+이 인터페이스를 구현하는 클래스는 인터페이스에서 선언된 메소드(바퀴, 핸들, 기어, 동력 장치)를 반드시 구체화 헤야함.
+=> 오버라이드(Override). 즉 재정의
+
+<br>
+
+Java8부터 인터페이스에서도 일반 메소드 구현할 수 있음.
+보통 default나 static으로 선언된 메소드.
+참고로 default로 선언된 메소드는 재정의를 할 수 있고, static은 재정의 불가.
+
+<br>
+
