@@ -240,34 +240,34 @@ class Student {
 public class Main {
     public static void main(String[] args) {
         Student a = new Student(17, 2);	// 17살 2반
-		Student b = new Student(18, 1);	// 18살 1반
-		Student c = new Student(15, 3);	// 15살 3반
-			
-		// 학급 기준 익명객체를 통해 b와 c객체를 비교한다.
-		int classBig = comp.compare(b, c);
-		
-		if(classBig > 0) {
-			System.out.println("b객체가 c객체보다 큽니다.");
-		}
-		else if(classBig == 0) {
-			System.out.println("두 객체의 크기가 같습니다.");
-		}
-		else {
-			System.out.println("b객체가 c객체보다 작습니다.");
-		}
-		
-		// 나이 기준 익명객체를 통해 b와 c객체를 비교한다.
-		int ageBig = comp2.compare(b, c);
-		
-		if(ageBig > 0) {
-			System.out.println("b객체가 c객체보다 큽니다.");
-		}
-		else if(ageBig == 0) {
-			System.out.println("두 객체의 크기가 같습니다.");
-		}
-		else {
-			System.out.println("b객체가 c객체보다 작습니다.");
-		}
+        Student b = new Student(18, 1);
+        Student c = new Student(15, 3);
+    
+        // 학급 기준 익명객체를 통해 b와 c객체를 비교
+        int classBig = comp.compare(b, c);
+
+        if(classBig > 0) {
+            System.out.println("b객체가 c객체보다 크다.");
+        }
+        else if(classBig == 0) {
+            System.out.println("두 객체의 크기가 같다.");
+        }
+        else {
+            System.out.println("b객체가 c객체보다 작다.");
+        }
+
+        // 나이 기준 익명객체를 통해 b와 c객체를 비교
+        int ageBig = comp2.compare(b, c);
+
+        if(ageBig > 0) {
+            System.out.println("b객체가 c객체보다 크다.");
+        }
+        else if(ageBig == 0) {
+            System.out.println("두 객체의 크기가 같다.");
+        }
+        else {
+            System.out.println("b객체가 c객체보다 작다.");
+        }
     }
 
     // 학급 대소 비교 익명객체
