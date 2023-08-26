@@ -317,7 +317,7 @@ public int compare(Class o1, Class o2) {
 
 <br>
 
-**그럼 내림차순의 경우에는?**
+**그럼 내림차순의 경우에는?**<br>
 => 두 원소 비교한 반환값 반대로 해준다
 ```java
 // Comparable
