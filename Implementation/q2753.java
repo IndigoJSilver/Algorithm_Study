@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.*;
 
 public class q2753 {
     public static void main(String[] args) throws IOException {
