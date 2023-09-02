@@ -411,3 +411,106 @@ Java8부터 인터페이스에서도 일반 메소드 구현할 수 있음.<br>
 
 <br>
 
+# 문자열
+자바에서 문자열 비교할 땐 'equals()' 메서드 사용.<br>
+'==' 연산자는 두 문자열이 메모리 상에서 같은 위치를 참조하는지 비교.<br>
+문자열 내용 비교시 'equals()' 메서드 사용해야 함.
+
+<br>
+
+# 이분 탐색
+두 부분으로 쪼개면서 탐색<br>
+
+**기본적인 메커니즘**
+1. 탐색 범위 내의 배열의 중간 인덱스 구하기
+2. 중간 인덱스의 값과 key값 비교
+3. 값이 중간 값보다 작으면 왼쪽 부분을, 중간 값보다 크다면 오른쪽 부분을 탐색. 같다면 해당 인덱스 반환.
+
+<br>
+
+**탐색 범위**<br>
+왼쪽 끝을 가리키는 변수(lo), 오른쪽 끝을 가리키는 변수(hi)<br>
+언제까지 반복? => lo가 hi보다 커지기 전까지 반복
+
+<br>
+
+```java
+public static int binarySearch(int[] arr, int key) {
+
+    int lo = 0;
+    int hi = arr.length - 1;
+
+    while(lo <= hi) {
+        int mid = (lo+hi)/2;
+         // key값이 mid보다 작다 -> 찾으려는 값(key값)이 mid보다 왼쪽에 있다 -> 탐색 범위 hi를 줄인다
+        if(key < arr[mid]) {
+            hi = mid - 1;
+        } 
+        
+        // key값이 mid보다 크다 -> 찾으려는 값(key값)이 mid보다 오른쪽에 있다 -> 탐색범위 lo를 키운다
+        else if(key > arr[mid]) {
+            lo = mid + 1;
+        }
+
+        // key == arr[mid]
+        else {
+            return mid;
+        }
+    }
+
+    // 찾고자 하는 값이 존재하지 않을 경우
+    return -1;
+}
+```
+
+<br>
+
+**중복 원소 존재 시**<br>
+중복 원소의 lo, hi를 알아낸다.<br>
+중복원소에 대한 길이 = 상한 - 하한<br>
+일단, lower bound(하한), upper bound(상한) 알아야 함.
+
+**lower bound**<br>
+찾고자 하는 값 **이상**의 값이 처음으로 나타나는 위치
+
+**upper bound**<br>
+찾고자 하는 값을 **초과**한 값을 처음 만나는 위치
+
+<br>
+
+```java
+private static int lowerBound(int[] arr, int key) {
+    int lo = 0;
+    int hi = arr.length; // -1을 하면 while 조건식 달라짐. 
+    // 탐색 범위는 lo이상 hi미만. 그래서 hi = n-1 아님. 
+
+    while(lo < hi) { // lo<=hi 안하는 이유는 lo==hi일시, hi = mid 해주기 때문에 무한루프에 빠진다.
+        int mid = (lo+hi)/2;
+
+        if(key <= arr[mid]) {
+            hi = mid;
+        }
+        else {
+            lo = mid + 1;
+        }
+    }
+    return lo;
+}
+
+private static int upperBound(int[] arr, int key) {
+    int lo = 0;
+    int hi = arr.length;
+
+    while(lo < hi) {
+        int mid = (lo+hi)/2;
+
+        if(key < arr[mid]) {
+            hi = mid;
+        }
+        else {
+            lo = mid + 1;;
+        }
+    }
+    return lo;
+}
+```
