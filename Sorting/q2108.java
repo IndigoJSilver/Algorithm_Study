@@ -1,42 +1,39 @@
-/*
- * 
- */
-
-import java.util.*;
 import java.io.*;
+import java.util.Arrays;
 
-public class q2108{
-    public static void main(String[] args) throws IOException{
+public class q2108 {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         int[] arr = new int[N];
-        for(int i=0; i<N; i++){
-            arr[i] = Integer.parseInt(br.readLine());
-        }
-        
-        // 산술평균
         int sum = 0;
-        for(int i=0; i<N; i++){
+        for(int i=0; i<N; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
             sum += arr[i];
         }
-        System.out.println(sum/N);
-
-        // 중앙값
         Arrays.sort(arr);
-        System.out.println(arr[N/2]);
-
-        // 최빈값 -> 계수정렬 써봐
-        int count = 0, max = 0;
+        int count = 0;
+        int max = -1;
+        int mode = arr[0];
         boolean check = false;
-        int[] plus = new int[4002]; // 0~4000
-        int[] minus = new int[4001]; // -1~-4000
-        for(int i=0; i<N; i++){
-            if(arr[i]<0){
-                minus[Math.abs(arr[i])]++;
+        for(int i=0; i<N-1; i++) {
+            if(arr[i]==arr[i+1]) {
+                count++;
+            } else {
+                count = 0;
+            }
+            if(max<count) {
+                max = count;
+                mode = arr[i];
+                check = true;
+            } else if(max==count && check==true) { // 최빈값 여러개일 경우 두번째
+                mode = arr[i];
+                check = false;
             }
         }
-
-        // 범위
-        System.out.println(arr[N-1] - arr[0]);
+        System.out.println((int)Math.round((double)sum/N));
+        System.out.println(arr[(N-1)/2]);
+        System.out.println(mode);
+        System.out.println(arr[N-1]-arr[0]);
     }
 }
