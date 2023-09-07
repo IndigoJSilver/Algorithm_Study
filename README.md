@@ -514,3 +514,15 @@ private static int upperBound(int[] arr, int key) {
     return lo;
 }
 ```
+
+# Arrays.sort vs Collections.sort()
+**Arrays.sort**
+- 평균 시간복잡도 O(nlogn)
+- 최악 O(n^2)
+- 배열 사용
+
+**Collections.sort()**
+- O(n) ~ O(nlogn)
+- 리스트 사용
+
+***Sysout 보다 Stringbuilder 쓰는게 더 빠름**
