@@ -105,7 +105,19 @@ ArrayList <Object> list = new ArrayList <>();
     ```java
     PriorityQueue<Integer> pq = new PriorityQueue<>();
     ``` 
-       
+
+# Stack
+*** empty vs isEmpty**
+- empty<br>
+empty 메소드는 Stack 클래스에 정의되어 있다.<br>
+그래서 Stack에 한정되어 있음.<br>
+이 메서드는 Stack이 비어있으면 true, 그렇지 않으면 false 반환.
+
+- isEmpty<br>
+Collection 인터페이스에 정의되어 있음.<br>
+위 인터페이스는 List, Set, Queue 등 다양한 데이터 구조 포함.<br>
+그래서 더 넓은 범위의 데이터 구조에 적용될 수 있음.
+
 # HashSet
 * 자바 Collection 중 Set의 파생클래스
 
